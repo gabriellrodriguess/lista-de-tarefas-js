@@ -24,10 +24,10 @@ body {
   border-radius: 20px;
   padding: 28px;
   box-shadow: 0 10px 35px rgba(0, 0, 0, 0.35);
+  text-align: center;
 }
 
 h1 {
-  text-align: center;
   margin-bottom: 24px;
   font-size: 34px;
 }
@@ -38,8 +38,11 @@ h1 {
   margin-bottom: 20px;
 }
 
-input {
+.topo input {
   flex: 1;
+}
+
+input {
   padding: 14px;
   border: none;
   border-radius: 12px;
@@ -53,8 +56,8 @@ button {
   padding: 14px 18px;
   border: none;
   border-radius: 12px;
-  background: #38bdf8;
-  color: #0f172a;
+  background: #22c55e;
+  color: white;
   font-weight: bold;
   cursor: pointer;
   transition: 0.2s;
@@ -68,6 +71,7 @@ button:hover {
 #lista {
   list-style: none;
   margin-top: 10px;
+  text-align: left;
 }
 
 #lista li {
@@ -93,7 +97,7 @@ button:hover {
 }
 
 #lista li button {
-  background: #f87171;
+  background: #ef4444;
   color: white;
   padding: 8px 12px;
   border-radius: 10px;
