@@ -1,55 +1,60 @@
 let tarefas = JSON.parse(localStorage.getItem("tarefas")) || []
 
-function salvar() {
+function salvarTarefas() {
   localStorage.setItem("tarefas", JSON.stringify(tarefas))
 }
 
-function renderizar() {
-  let lista = document.getElementById("lista")
+function renderizarTarefas() {
+  const lista = document.getElementById("lista")
   lista.innerHTML = ""
 
   tarefas.forEach((tarefa, index) => {
-    let li = document.createElement("li")
-    li.innerText = tarefa.nome
+    const li = document.createElement("li")
 
-    if (tarefa.feito) {
-      li.classList.add("concluida")
+    const span = document.createElement("span")
+    span.textContent = tarefa.nome
+
+    if (tarefa.feita) {
+      span.classList.add("concluida")
     }
 
-    li.onclick = () => {
-      tarefas[index].feito = !tarefas[index].feito
-      salvar()
-      renderizar()
+    span.onclick = function () {
+      tarefas[index].feita = !tarefas[index].feita
+      salvarTarefas()
+      renderizarTarefas()
     }
 
-    let btn = document.createElement("button")
-    btn.innerText = "X"
+    const botaoExcluir = document.createElement("button")
+    botaoExcluir.textContent = "Excluir"
 
-    btn.onclick = (e) => {
-      e.stopPropagation()
+    botaoExcluir.onclick = function () {
       tarefas.splice(index, 1)
-      salvar()
-      renderizar()
+      salvarTarefas()
+      renderizarTarefas()
     }
 
-    li.appendChild(btn)
+    li.appendChild(span)
+    li.appendChild(botaoExcluir)
     lista.appendChild(li)
   })
 }
 
 function adicionarTarefa() {
-  let input = document.getElementById("inputTarefa")
+  const input = document.getElementById("inputTarefa")
+  const texto = input.value.trim()
 
-  if (input.value === "") return
+  if (texto === "") {
+    return
+  }
 
   tarefas.push({
-    nome: input.value,
-    feito: false
+    nome: texto,
+    feita: false
   })
 
   input.value = ""
-  salvar()
-  renderizar()
+  salvarTarefas()
+  renderizarTarefas()
 }
 
-renderizar()
+renderizarTarefas()
